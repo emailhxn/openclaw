@@ -789,7 +789,7 @@ export async function runEmbeddedAttempt(
           };
         });
 
-        log.info(`complete prompt context: ${messagesForLogging.length} messages`, {
+        log.debug(`complete prompt context: ${messagesForLogging.length} messages`, {
           runId: params.runId,
           sessionId: params.sessionId,
           provider: params.provider,
@@ -996,7 +996,7 @@ export async function runEmbeddedAttempt(
         if (replyText) {
           const replyPreview = replyText.slice(0, 500);
           const isTruncated = replyText.length > 500;
-          log.info(`assistant reply: ${replyPreview}${isTruncated ? "..." : ""}`, {
+          log.debug(`assistant reply: ${replyPreview}${isTruncated ? "..." : ""}`, {
             runId: params.runId,
             sessionId: params.sessionId,
             replyLength: replyText.length,
@@ -1010,7 +1010,7 @@ export async function runEmbeddedAttempt(
         if (thinkingText) {
           const thinkingPreview = thinkingText.slice(0, 500);
           const isThinkingTruncated = thinkingText.length > 500;
-          log.info(`assistant thinking: ${thinkingPreview}${isThinkingTruncated ? "..." : ""}`, {
+          log.debug(`assistant thinking: ${thinkingPreview}${isThinkingTruncated ? "..." : ""}`, {
             runId: params.runId,
             sessionId: params.sessionId,
             thinkingLength: thinkingText.length,
@@ -1020,7 +1020,7 @@ export async function runEmbeddedAttempt(
 
         // Log tool calls if present
         if (toolCalls.length > 0) {
-          log.info(`assistant tool calls: ${toolCalls.length} tool(s) invoked`, {
+          log.debug(`assistant tool calls: ${toolCalls.length} tool(s) invoked`, {
             runId: params.runId,
             sessionId: params.sessionId,
             toolCalls: toolCalls.map((tc) => ({

@@ -28,6 +28,40 @@
 
 所有操作按照实际发生时间严格排序，构成完整的 Action List。
 
+## ⚙️ 前置要求
+
+### 启用详细日志
+
+为了让日志分析器提取完整的对话信息，你需要在 OpenClaw 配置中启用 **debug 日志级别**：
+
+**配置文件**：`~/.openclaw/openclaw.json`
+
+```json
+{
+  "logging": {
+    "level": "debug",                           // ✅ 必须设置为 debug
+    "file": "/tmp/openclaw/openclaw-{DATE}.log"
+  }
+}
+```
+
+**重要说明**：
+
+- 🔴 **默认 `info` 级别不会记录详细的 Prompt、LLM 思考过程和回复内容**
+- ✅ **`debug` 级别会记录所有详细信息**（系统 Prompt、用户输入、LLM 思考、工具调用参数、完整结果等）
+- ⚠️ **`debug` 日志会更大**，但包含完整的诊断信息
+- 💡 **仅在需要分析时启用**，平时可以使用 `info` 级别以减少日志量
+
+**修改配置后，重启 OpenClaw Gateway**：
+
+```bash
+# 停止 OpenClaw
+pkill -f openclaw
+
+# 重新启动
+openclaw gateway
+```
+
 ## 使用方法
 
 ### 基本用法
